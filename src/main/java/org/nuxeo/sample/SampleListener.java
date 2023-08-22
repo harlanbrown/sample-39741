@@ -18,6 +18,9 @@ public class SampleListener implements EventListener {
     public void handleEvent(Event event) {
 
         EventContext eventContext = event.getContext();
+
+        log.debug(eventContext.getProperties().get("prop"));
+
         if (!(eventContext instanceof DocumentEventContext)) {
             return;
         }
