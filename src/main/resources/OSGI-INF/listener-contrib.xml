@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
 <component name="org.nuxeo.sample.listener">
-    <extension target="org.nuxeo.ecm.platform.audit.service.NXAuditEventsService" point="event">
-        <event name="myEvent" />
+    <extension target="org.nuxeo.ecm.core.api.DocumentValidationService" point="activations">
+        <validation context="createDocument" activated="true" />
+        <validation context="saveDocument" activated="true" />
+        <validation context="importDocument" activated="true" />
     </extension>
     <extension target="org.nuxeo.ecm.core.event.EventServiceComponent" point="listener">
-        <listener async="true" postCommit="true" name="samplelistener" class="org.nuxeo.sample.SampleListener">
-            <event>myEvent</event>
+        <listener name="validation" class="org.nuxeo.sample.SampleValidationListener">
+            <event>aboutToCreate</event>
         </listener>
     </extension>
 </component>
